@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+var debug = require('debug')('todoApp');
+var libs = process.cwd() + '/lib/';
+var config = require(libs + 'config');
+var server = require('../app');
+
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+
+server.listen(server_port, server_ip_address, function () {
+  console.log( "Listening on " + server_ip_address + ", server_port " + server_port )
+});
+
+server.on('uncaughtException', function (req, res, route, err) {
+    console.log('uncaughtException', err.stack);
+});

@@ -1,0 +1,49 @@
+var express = require('express');
+var router = express.Router();
+var mongoose = require('mongoose');
+var Todo = require('../models/Todo.js');
+
+/* GET /todos listing. */
+router.get('/', function(req, res, next) {
+    Todo.find(function(err, todos) {
+        if (err) return next(err);
+        res.json(todos);
+    });
+});
+
+/* POST /todos */
+router.post('/', function(req, res, next) {
+    var name = req.body.name;
+    console.log(name);
+    Todo.create(req.body, function(err, post) {
+        console.log(req.body);
+        if (err) return next(err);
+        res.json(post);
+    });
+});
+
+/* GET /todos/id */
+router.get('/:id', function(req, res, next) {
+    Todo.findById(req.params.id, function(err, post) {
+        if (err) return next(err);
+        res.json(post);
+    });
+});
+
+/* PUT /todos/:id */
+router.put('/:id', function(req, res, next) {
+    Todo.findByIdAndUpdate(req.params.id, req.body, function(err, post) {
+        if (err) return next(err);
+        res.json(post);
+    });
+});
+
+/* DELETE /todos/:id */
+router.delete('/deleteTask/:id', function(req, res, next) {
+    Todo.findByIdAndRemove(req.params.id, req.body, function(err, post) {
+        if (err) return next(err);
+        res.json(post);
+    });
+});
+
+module.exports = router;
