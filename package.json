@@ -31,9 +31,8 @@
 	"mongoose-paginate": "5.0.0",
 	"supervisor":"0.10.0",
 	"multer":"1.1.0",
-	"fcm-node":"1.0.14",
-	"cluster":"^7.2.0",
-	"os":"^7.2.0"
+	"fcm-node":"1.0.14"
+
 	
   },
   "main":"cluster.js"
