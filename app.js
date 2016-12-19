@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var crypto = require('crypto');
-
 //var multer  = require('multer');
 //importsvar routes = require('./routes/index');
 var login = require('./routes/login');
